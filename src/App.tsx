@@ -12,6 +12,7 @@ import Schedules from './pages/Schedules';
 import AllSchedules from './pages/AllSchedules';
 import ClassSchedules from './pages/ClassSchedules';
 import PDFExport from './pages/PDFExport';
+import AutoScheduleGenerator from './pages/AutoScheduleGenerator';
 import ToastContainer from './components/UI/ToastContainer';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
               <Route path="classes" element={<Classes />} />
               <Route path="subjects" element={<Subjects />} />
               <Route path="schedules" element={<Schedules />} />
+              <Route path="auto-schedule" element={<AutoScheduleGenerator />} />
               <Route path="class-schedules" element={<ClassSchedules />} />
               <Route path="all-schedules" element={<AllSchedules />} />
               <Route path="pdf" element={<PDFExport />} />
