@@ -57,45 +57,32 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, title, children, size = 
         {/* Center modal */}
         <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
         
-        {/* CRITICAL: Mobile-optimized modal panel */}
+        {/* Modal panel */}
         <div className={`
-          inline-block align-bottom bg-white text-left overflow-hidden shadow-2xl transform transition-all 
+          modal-corporate inline-block align-bottom text-left overflow-hidden transform transition-all 
           sm:my-8 sm:align-middle sm:w-full ${sizeClasses[size]}
-          
-          /* MOBILE OPTIMIZATIONS */
-          w-full max-w-none mx-0 mb-0
-          sm:mx-4 sm:mb-4 sm:max-w-lg
-          
-          /* MOBILE: Full width with rounded top corners */
-          rounded-t-2xl sm:rounded-xl
-          
-          /* MOBILE: Better height management */
-          max-h-[95vh] sm:max-h-[90vh]
-          
-          /* MOBILE: Ensure proper positioning */
-          modal-mobile
+          w-full max-w-none mx-0 mb-0 sm:mx-4 sm:mb-4 sm:max-w-lg
+          rounded-t-2xl sm:rounded-xl max-h-[95vh] sm:max-h-[90vh]
         `}>
-          {/* Header - Mobile optimized */}
-          <div className="bg-white px-4 sm:px-6 pt-5 sm:pt-6 pb-4 border-b border-gray-200 sticky top-0 z-10">
+          {/* Header */}
+          <div className="bg-white px-6 pt-6 pb-4 border-b border-gray-200 sticky top-0 z-10">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg sm:text-xl font-bold text-gray-900 pr-4 truncate">
+              <h3 className="text-xl font-bold text-gray-900 pr-4 truncate">
                 {title}
               </h3>
               <button
                 onClick={onClose}
-                className="rounded-lg p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 btn-touch flex-shrink-0"
+                className="btn-icon text-gray-400 hover:text-gray-600"
                 aria-label="Modalı kapat"
               >
-                <X size={24} />
+                <X size={20} />
               </button>
             </div>
           </div>
           
-          {/* Content - Mobile optimized with proper scrolling */}
-          <div className="bg-white px-4 sm:px-6 py-4 sm:py-6 overflow-y-auto flex-1">
-            <div className="form-mobile">
-              {children}
-            </div>
+          {/* Content */}
+          <div className="bg-white px-6 py-6 overflow-y-auto flex-1">
+            {children}
           </div>
         </div>
       </div>

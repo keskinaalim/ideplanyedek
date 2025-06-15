@@ -12,15 +12,15 @@ const Sidebar = () => {
   };
 
   const navItems = [
-    { to: '/', icon: Home, label: 'Anasayfa', color: 'ide-primary' },
-    { to: '/subjects', icon: BookOpen, label: 'Dersler', color: 'ide-orange' },
-    { to: '/teachers', icon: Users, label: 'Öğretmenler', color: 'ide-primary' },
-    { to: '/classes', icon: Building, label: 'Sınıflar', color: 'ide-secondary' },
-    { to: '/schedules', icon: Calendar, label: 'Program Oluştur', color: 'ide-accent' },
-    { to: '/auto-schedule', icon: Zap, label: 'Otomatik Program', color: 'ide-accent' },
-    { to: '/class-schedules', icon: GraduationCap, label: 'Sınıf Programları', color: 'ide-secondary' },
-    { to: '/all-schedules', icon: Eye, label: 'Öğretmen Programları', color: 'ide-primary' },
-    { to: '/pdf', icon: Calendar, label: 'PDF Çıktı', color: 'ide-orange' }
+    { to: '/', icon: Home, label: 'Anasayfa', color: 'text-blue-600' },
+    { to: '/subjects', icon: BookOpen, label: 'Dersler', color: 'text-indigo-600' },
+    { to: '/teachers', icon: Users, label: 'Öğretmenler', color: 'text-blue-600' },
+    { to: '/classes', icon: Building, label: 'Sınıflar', color: 'text-emerald-600' },
+    { to: '/schedules', icon: Calendar, label: 'Program Oluştur', color: 'text-purple-600' },
+    { to: '/auto-schedule', icon: Zap, label: 'Otomatik Program', color: 'text-orange-600' },
+    { to: '/class-schedules', icon: GraduationCap, label: 'Sınıf Programları', color: 'text-emerald-600' },
+    { to: '/all-schedules', icon: Eye, label: 'Öğretmen Programları', color: 'text-blue-600' },
+    { to: '/pdf', icon: Calendar, label: 'PDF Çıktı', color: 'text-orange-600' }
   ];
 
   const closeMobileMenu = () => {
@@ -29,22 +29,22 @@ const Sidebar = () => {
 
   return (
     <>
-      {/* CRITICAL: Mobile Menu Button with enhanced touch target */}
+      {/* Mobile Menu Button */}
       <div className="lg:hidden fixed top-4 left-4 z-50 safe-top safe-left">
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-3 bg-white rounded-lg shadow-ide border border-ide-gray-200 hover:bg-ide-gray-50 focus:outline-none focus:ring-2 focus:ring-ide-primary-500 focus:ring-offset-2 transition-all duration-200 btn-touch touch-enhanced"
+          className="btn-icon bg-white shadow-lg border-gray-200 hover:bg-gray-50"
           aria-label="Menüyü aç/kapat"
         >
           {isMobileMenuOpen ? (
-            <X size={24} className="text-ide-gray-700" />
+            <X size={20} className="text-gray-700" />
           ) : (
-            <Menu size={24} className="text-ide-gray-700" />
+            <Menu size={20} className="text-gray-700" />
           )}
         </button>
       </div>
 
-      {/* CRITICAL: Mobile Overlay with better backdrop */}
+      {/* Mobile Overlay */}
       {isMobileMenuOpen && (
         <div 
           className="lg:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300"
@@ -52,68 +52,80 @@ const Sidebar = () => {
         />
       )}
 
-      {/* CRITICAL: Sidebar with mobile optimizations */}
+      {/* Sidebar */}
       <div className={`
-        fixed lg:static inset-y-0 left-0 z-40 bg-white shadow-ide-xl lg:shadow-ide h-screen flex flex-col
+        sidebar-corporate fixed lg:static inset-y-0 left-0 z-40 h-screen
         transform transition-transform duration-300 ease-in-out
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
-        
-        /* MOBILE OPTIMIZATIONS */
-        sidebar-mobile lg:w-64
         safe-top safe-bottom safe-left
       `}>
-        {/* Header */}
-        <div className="p-6 border-b border-ide-gray-200 ide-gradient-primary">
+        {/* Logo Header */}
+        <div className="logo-corporate">
           <div className="flex items-center justify-between lg:justify-start">
-            <div>
-              <h1 className="text-xl font-bold text-white">İDE Okulları</h1>
-              <p className="text-sm text-ide-primary-100 mt-1">Ders Programı Sistemi</p>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
+                <img 
+                  src="https://cv.ide.k12.tr/images/ideokullari_logo.png" 
+                  alt="İDE Okulları Logo"
+                  className="w-8 h-8 object-contain"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = '<div class="w-8 h-8 text-white flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>';
+                    }
+                  }}
+                />
+              </div>
+              <div>
+                <h1 className="text-lg font-bold text-white">İDE Okulları</h1>
+                <p className="text-xs text-blue-100 opacity-90">Ders Programı Sistemi</p>
+              </div>
             </div>
-            {/* CRITICAL: Mobile close button with enhanced touch target */}
+            
+            {/* Mobile close button */}
             <button
               onClick={closeMobileMenu}
-              className="lg:hidden p-2 rounded-lg hover:bg-ide-primary-700 focus:outline-none focus:ring-2 focus:ring-white transition-all duration-200 btn-touch touch-enhanced"
+              className="lg:hidden btn-icon bg-white bg-opacity-20 border-white border-opacity-30 text-white hover:bg-opacity-30"
               aria-label="Menüyü kapat"
             >
-              <X size={20} className="text-white" />
+              <X size={18} />
             </button>
           </div>
         </div>
         
-        {/* CRITICAL: Navigation with mobile optimizations */}
-        <nav className="flex-1 p-4 overflow-y-auto bg-ide-gray-50">
-          <ul className="space-y-2">
+        {/* Navigation */}
+        <nav className="flex-1 p-4 bg-gray-50 overflow-y-auto">
+          <div className="space-y-2">
             {navItems.map(({ to, icon: Icon, label, color }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  onClick={closeMobileMenu}
-                  className={({ isActive }) =>
-                    `mobile-nav-item ${
-                      isActive
-                        ? `bg-ide-primary-50 text-ide-primary-700 border-r-4 lg:border-r-2 border-ide-primary-700 shadow-ide`
-                        : 'text-ide-gray-700 hover:bg-white hover:text-ide-primary-600 hover:shadow-ide'
-                    }`
-                  }
-                >
-                  <Icon 
-                    size={22} 
-                    className="mobile-nav-icon lg:w-5 lg:h-5 flex-shrink-0 transition-colors duration-200 text-ide-gray-500 group-hover:text-ide-primary-500" 
-                  />
-                  <span className="flex-1 font-medium">{label}</span>
-                </NavLink>
-              </li>
+              <NavLink
+                key={to}
+                to={to}
+                onClick={closeMobileMenu}
+                className={({ isActive }) =>
+                  `nav-corporate group ${isActive ? 'active' : ''}`
+                }
+              >
+                <Icon 
+                  size={20} 
+                  className={`mr-3 flex-shrink-0 transition-colors duration-200 ${
+                    window.location.pathname === to ? 'text-white' : 'text-gray-500 group-hover:text-gray-700'
+                  }`}
+                />
+                <span className="font-medium truncate">{label}</span>
+              </NavLink>
             ))}
-          </ul>
+          </div>
         </nav>
         
-        {/* CRITICAL: Logout Button with mobile optimizations */}
-        <div className="p-4 border-t border-ide-gray-200 bg-white safe-bottom">
+        {/* Logout Button */}
+        <div className="p-4 border-t border-gray-200 bg-white safe-bottom">
           <button
             onClick={handleLogout}
-            className="mobile-nav-item w-full text-ide-gray-700 hover:bg-ide-accent-50 hover:text-ide-accent-700 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-ide-accent-500 focus:ring-offset-2 group"
+            className="nav-corporate w-full text-gray-700 hover:bg-red-50 hover:text-red-700 group"
           >
-            <LogOut size={22} className="mobile-nav-icon lg:w-5 lg:h-5 flex-shrink-0 text-ide-gray-500 group-hover:text-ide-accent-500 transition-colors duration-200" />
+            <LogOut size={20} className="mr-3 flex-shrink-0 text-gray-500 group-hover:text-red-500 transition-colors duration-200" />
             <span className="font-medium">Çıkış Yap</span>
           </button>
         </div>
