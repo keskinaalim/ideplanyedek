@@ -10,6 +10,7 @@ import {
   Zap
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../components/UI/Button';
 
 const Home = () => {
   const navigate = useNavigate();
